@@ -46,9 +46,25 @@ const styles = {
 const TabNavigator = createBottomTabNavigator({
   One: Doviz,
   Two: Altin,
-  Three: Kripto
-
-});
+  Three: Kripto,
+},
+  {
+    tabBarOptions: {
+      activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
+      inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
+      labelStyle: {
+        fontSize: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      style: {
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+    }
+  }
+);
 
 export default createAppContainer(TabNavigator);
 
