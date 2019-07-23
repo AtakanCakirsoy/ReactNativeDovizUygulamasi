@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 
 class ListItem extends Component {
-    state = { change: [] };
     render() {
         const { mainView, nameView, buyView, sellView, textStyle, dailyView } = styles;
         const { name, buyPrice, sellPrice, dailyChange } = this.props.veri; //Diğer sayfalarda Listitem'e gönderdiğimiz verileri burda alıyoruz ve aşağıda bastırıyoruz.
@@ -16,12 +15,7 @@ class ListItem extends Component {
             return num.toString().match(re)[0];
         }
         //Günlük olarak yükseliş veya azalış ifade etmek için
-        if (dailyChange < 0) {
-            this.state.change = "↓"
-        }
-        else {
-            this.state.change = "↑"
-        }
+
         return ( //Alttaki yapı önemli. Ana view row, diğer viewler column.
             <View style={mainView}>
                 <View style={nameView}>
@@ -34,7 +28,13 @@ class ListItem extends Component {
                     <Text style={textStyle}>{toFixedSellPrice(sellPrice,2)}</Text>
                 </View>
                 <View style={dailyView}>
-                    <Text style={{ fontSize: 20 }}>{this.state.change}</Text>
+                    {dailyChange < 0 ?
+                    <Text style={{ fontSize: 20, color:"red",fontWeight:"bold" }}>↓</Text>
+                    :dailyChange > 0 ?
+                    <Text style={{ fontSize: 20, color:"green",fontWeight:"bold" }}>↑</Text>
+                    :
+                    <Text style={{ fontSize: 20, color:"yellow",fontWeight:"bold" }}>-</Text>
+                    }
                 </View>
             </View>
         );
@@ -81,3 +81,12 @@ const styles = {
 }
 export default ListItem;
 //<Text>{buyPrice.toFixed(2)}</Text> virgülden sonra 2 haneyi al demek.
+/*  <View style={dailyView}>
+                    {dailyChange < 0 ?
+                    <Text style={{ fontSize: 20, color:"red",fontWeight:"bold" }}>↓</Text>
+                    :dailyChange > 0 ?
+                    <Text style={{ fontSize: 20, color:"green",fontWeight:"bold" }}>↑</Text>
+                    :
+                    <Text style={{ fontSize: 20, color:"yellow",fontWeight:"bold" }}>-</Text>
+                    }
+                </View>* Önemli if yapısı/ 
