@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { Image } from 'react-native';
+import { View, Image } from 'react-native';
 import Altin from './components/Altin';
 import Doviz from './components/Doviz';
 import Kripto from './components/Kripto';
@@ -57,20 +57,20 @@ const TabNavigator = createBottomTabNavigator({
           return (
             <Image
               source={require('./assets/money.png')}
-              style={{ width: 30, height: 30, }} />
+              style={{ flex: 0.5, width: 30, height: 30, }} />
           );
         } else if (routeName === 'Gold') {
           return (
             <Image
               source={require('./assets/gold.png')}
-              style={{ width: 30, height: 30 }} />
+              style={{ width: 30, height: 30, }} />
           );
         }
         else if (routeName === 'Bitcoin') {
           return (
             <Image
               source={require('./assets/bitcoin.png')}
-              style={{ width: 30, height: 30 }} />
+              style={{ width: 30, height: 30, }} />
           );
         }
       },
@@ -78,23 +78,27 @@ const TabNavigator = createBottomTabNavigator({
     tabBarOptions: {
       activeTintColor: '#FF6F00',
       inactiveTintColor: '#263238',
+      showLabel: false,
     },
+    TabNavigatorConfig: {
+      swipeEnabled: true,
+    }
   }
 );
 export default createAppContainer(TabNavigator);
     /*tabBarOptions: {
-  activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
-  inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
-  labelStyle: {
-    fontSize: 12,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  style: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
+inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
+labelStyle: {
+fontSize: 12,
+justifyContent: 'center',
+alignItems: 'center'
+},
+style: {
+backgroundColor: 'white',
+justifyContent: 'center',
+alignItems: 'center'
+},
 }*/
 
 

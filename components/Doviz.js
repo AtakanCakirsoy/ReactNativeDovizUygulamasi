@@ -19,7 +19,7 @@ class Doviz extends Component {
         const a = 5;//Debug almanın yararıda uygulama ilk açıldığında hangi metoda düşer, rendera düştüğünde hangi metoda gider vs. bilmek için*/
     }
     static navigationOptions = {
-        tabBarLabel: '',
+        tabBarLabel: 'Döviz',
 
     }
     renderRow(veri) {
@@ -37,11 +37,17 @@ class Doviz extends Component {
 
     }
     render() {
-        const { mainView, headerView, scrollView } = styles;
+        const { mainView, headerView, scrollView, titleView, textStyle } = styles;
         return (
             <View style={mainView}>
                 <View style={headerView}>
                     <Header headerText="Döviz" />
+                </View>
+                <View style={titleView}>
+                    <Text style={textStyle}>Birim</Text>
+                    <Text style={textStyle}>Alış</Text>
+                    <Text style={textStyle}>Satış</Text>
+                    <Text style={textStyle}>Değişim</Text>
                 </View>
                 <ScrollView style={scrollView}>
                     <View>
@@ -66,6 +72,19 @@ const styles = {
     scrollView: {
         flex: 1.9,
     },
+    titleView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 5,
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    textStyle: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 }
 export default Doviz;
 // {this.renderData()} scrollView arasındaki eski kod
