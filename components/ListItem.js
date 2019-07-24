@@ -89,4 +89,4 @@ export default ListItem;
                     :
                     <Text style={{ fontSize: 20, color:"yellow",fontWeight:"bold" }}>-</Text>
                     }
-                </View>* Önemli if yapısı/ 
+                </View>* Önemli if yapısı*/ 

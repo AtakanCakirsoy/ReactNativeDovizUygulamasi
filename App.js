@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Image } from 'react-native';
 import Altin from './components/Altin';
 import Doviz from './components/Doviz';
 import Kripto from './components/Kripto';
@@ -44,27 +45,56 @@ const styles = {
   }
 }*/
 const TabNavigator = createBottomTabNavigator({
-  One: Doviz,
-  Two: Altin,
-  Three: Kripto,
+  Currency: Doviz,
+  Gold: Altin,
+  Bitcoin: Kripto,
 },
   {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        if (routeName === 'Currency') {
+          return (
+            <Image
+              source={require('./assets/money.png')}
+              style={{ width: 30, height: 30, }} />
+          );
+        } else if (routeName === 'Gold') {
+          return (
+            <Image
+              source={require('./assets/gold.png')}
+              style={{ width: 30, height: 30 }} />
+          );
+        }
+        else if (routeName === 'Bitcoin') {
+          return (
+            <Image
+              source={require('./assets/bitcoin.png')}
+              style={{ width: 30, height: 30 }} />
+          );
+        }
+      },
+    }),
     tabBarOptions: {
-      activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
-      inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
-      labelStyle: {
-        fontSize: 12,
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      style: {
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-    }
+      activeTintColor: '#FF6F00',
+      inactiveTintColor: '#263238',
+    },
   }
 );
-
 export default createAppContainer(TabNavigator);
+    /*tabBarOptions: {
+  activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
+  inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
+  labelStyle: {
+    fontSize: 12,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  style: {
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+}*/
+
 

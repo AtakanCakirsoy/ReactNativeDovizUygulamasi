@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import Header from './Header';
 import axios from 'axios';
 import ListItem from './ListItem';
@@ -10,12 +10,17 @@ class Doviz extends Component {
         /* Axiosu entegre edip, get metodunu çalıştırarak url'e gönderdik, hata almadan dönerse response edip logladık.
         Diğer videoda, logu kaldırık, dönen responsenin datasını alıp data arrayin içerisine aktarıyoruz.  */
         axios.get('https://api.canlidoviz.com/web/items?marketId=1&type=0')
-            .then(response => this.setState({ data: response.data }));
+            .then(response => {
+                this.setState({ data: response.data });
+                console.log(response);
+            })
+            .then(error => console.log(error));
         /*debugger; //ctrl+m yapıp debug'ı seçtiğinde bunun sayesinde tek tek gezebilirsin f12 yapıp
         const a = 5;//Debug almanın yararıda uygulama ilk açıldığında hangi metoda düşer, rendera düştüğünde hangi metoda gider vs. bilmek için*/
     }
     static navigationOptions = {
-        tabBarLabel: 'Döviz',
+        tabBarLabel: '',
+
     }
     renderRow(veri) {
         return <ListItem veri={veri} />;
