@@ -4,7 +4,8 @@ import { Text, View, Image } from 'react-native';
 class ListItem extends Component {
     render() {
         const { mainView, nameView, buyView, sellView, textStyle, dailyView } = styles;
-        const { name, buyPrice, sellPrice, dailyChange } = this.props.veri; //Diğer sayfalarda Listitem'e gönderdiğimiz verileri burda alıyoruz ve aşağıda bastırıyoruz.
+        const { name } = this.props.veri;
+        const { Alış, Satış, Tür } = this.props.veri.value; //Diğer sayfalarda Listitem'e gönderdiğimiz verileri burda alıyoruz ve aşağıda bastırıyoruz.
         //sadece toFixed metodunu kullanınca sayıları yuvarlıyordu. Bu method ile sayıları yuvarlamıyor.
         function toFixedBuyPrice(num, fixed) {
             var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -18,23 +19,15 @@ class ListItem extends Component {
 
         return ( //Alttaki yapı önemli. Ana view row, diğer viewler column.
             <View style={mainView}>
+
                 <View style={nameView}>
                     <Text style={textStyle}>{name}</Text>
                 </View>
                 <View style={buyView}>
-                    <Text style={textStyle}>{toFixedBuyPrice(buyPrice,2)}</Text>
+                    <Text style={textStyle}>{toFixedBuyPrice(Alış, 2)}</Text>
                 </View>
                 <View style={sellView}>
-                    <Text style={textStyle}>{toFixedSellPrice(sellPrice,2)}</Text>
-                </View>
-                <View style={dailyView}>
-                    {dailyChange < 0 ?
-                    <Text style={{ fontSize: 20, color:"red",fontWeight:"bold" }}>↓</Text>
-                    :dailyChange > 0 ?
-                    <Text style={{ fontSize: 20, color:"green",fontWeight:"bold" }}>↑</Text>
-                    :
-                    <Text style={{ fontSize: 20, color:"yellow",fontWeight:"bold" }}>-</Text>
-                    }
+                    <Text style={textStyle}>{toFixedSellPrice(Satış, 2)}</Text>
                 </View>
             </View>
         );
@@ -44,44 +37,44 @@ class ListItem extends Component {
 const styles = {
     mainView: {
         flexDirection: 'row',
-        marginBottom: 5,
+        borderBottomWidth: 1,
+        borderColor: 'grey',
+        paddingBottom: 10,
+        paddingTop: 10,
     },
     nameView: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
     },
     buyView: {
         flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue'
     },
     sellView: {
         flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'green'
     },
     dailyView: {
         flex: 0.3,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'pink'
     },
     textStyle: {
         fontSize: 15,
+        textAlign: 'center'
     }
 
 }
 export default ListItem;
 //<Text>{buyPrice.toFixed(2)}</Text> virgülden sonra 2 haneyi al demek.
-/*  <View style={dailyView}>
+/* <View style={dailyView}>
                     {dailyChange < 0 ?
                     <Text style={{ fontSize: 20, color:"red",fontWeight:"bold" }}>↓</Text>
                     :dailyChange > 0 ?
@@ -89,4 +82,4 @@ export default ListItem;
                     :
                     <Text style={{ fontSize: 20, color:"yellow",fontWeight:"bold" }}>-</Text>
                     }
-                </View>* Önemli if yapısı*/ 
+                </View> Önemli if yapısı*/

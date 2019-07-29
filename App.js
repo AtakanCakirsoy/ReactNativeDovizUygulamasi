@@ -4,6 +4,77 @@ import { View, Image } from 'react-native';
 import Altin from './components/Altin';
 import Doviz from './components/Doviz';
 import Kripto from './components/Kripto';
+import DeviceInfo from 'react-native-device-info'; //npm install --save react-native-device-info
+//get device info önemli. İçinde birden çok fonksiyon kontrolü var işe yarar
+//Bu tarz frameworklar ile mesela interneti olup olmadığını kontrol edip, buna göre zorunlu olarak interneti açtırabilirsin
+import StringOfLanguages from './components/StringOfLanguages';
+
+
+const deviceCountry = DeviceInfo.getDeviceCountry();
+console.log(deviceCountry);
+
+if (deviceCountry === 'TR') {
+
+  StringOfLanguages.setLanguage('tr');
+
+} else {
+  StringOfLanguages.setLanguage('en');
+}
+
+
+
+
+const TabNavigator = createBottomTabNavigator({
+  Currency: Doviz,
+  Gold: Altin,
+  //Bitcoin: Kripto,
+},
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: () => {
+        const { routeName } = navigation.state;
+        if (routeName === 'Currency') {
+          return (
+            <Image
+              source={require('./assets/money.png')}
+              style={{ flex: 0.7, width: 30, height: 30, }} />
+          );
+        } else if (routeName === 'Gold') {
+          return (
+            <Image
+              source={require('./assets/gold.png')}
+              style={{ flex: 1, width: 30, height: 30, }} />
+          );
+        }
+        else if (routeName === 'Bitcoin') {
+          return (
+            <Image
+              source={require('./assets/bitcoin.png')}
+              style={{ width: 30, height: 30, }} />
+          );
+        }
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'white',
+      inactiveTintColor: 'white',
+      activeBackgroundColor: '#00218B',
+      //showLabel: false,
+      style: {
+        backgroundColor: '#00074A',//color you want to change
+        fontFamily: 'sans-serif-medium',
+      },
+      tabStyle: {
+        borderRightWidth: 1,
+        borderLeftWidth: 1,
+        shadowOffset: { width: 0, height: 2 }, //Gölge oluşturmak için
+        shadowOpacity: 0.2,
+      }
+    },
+  }
+);
+
+export default createAppContainer(TabNavigator);
 
 /*class App extends Component {
   render() {
@@ -44,49 +115,9 @@ const styles = {
     justifyContent: "center"
   }
 }*/
-const TabNavigator = createBottomTabNavigator({
-  Currency: Doviz,
-  Gold: Altin,
-  Bitcoin: Kripto,
-},
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        if (routeName === 'Currency') {
-          return (
-            <Image
-              source={require('./assets/money.png')}
-              style={{ flex: 0.5, width: 30, height: 30, }} />
-          );
-        } else if (routeName === 'Gold') {
-          return (
-            <Image
-              source={require('./assets/gold.png')}
-              style={{ width: 30, height: 30, }} />
-          );
-        }
-        else if (routeName === 'Bitcoin') {
-          return (
-            <Image
-              source={require('./assets/bitcoin.png')}
-              style={{ width: 30, height: 30, }} />
-          );
-        }
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: '#FF6F00',
-      inactiveTintColor: '#263238',
-      showLabel: false,
-    },
-    TabNavigatorConfig: {
-      swipeEnabled: true,
-    }
-  }
-);
-export default createAppContainer(TabNavigator);
-    /*tabBarOptions: {
+
+
+/*tabBarOptions: {
 activeTintColor: 'black', //'#e91e63', saydam // Tıklandığındaki rengi
 inactiveTintColor: 'grey', // tıklı olmadığındaki rengi
 labelStyle: {
