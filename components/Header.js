@@ -24,7 +24,7 @@ const styles = {
         justifyContent: 'center', //dikey 
         alignItems: 'center', //yatay
         shadowOffset: { width: 0, height: 2 }, //Gölge oluşturmak için
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.2,
         backgroundColor: '#00074A',
         borderBottomWidth: 3,
         borderColor: 'black',
