@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 
 const Header = (props) => {
     const { textStyle, viewStyle, backgroundStyle } = styles;
     return (
-            <View style={viewStyle}>
+            <SafeAreaView style={viewStyle}>
                 <Text style={textStyle}>{props.headerText}</Text>
-            </View>
+            </SafeAreaView>
     );
 };
 
@@ -15,7 +16,7 @@ const styles = {
     textStyle: {
         fontSize: 20,
         color: 'white',
-        fontFamily: 'sans-serif-medium'
+        //fontFamily: 'sans-serif-medium'
     },
     viewStyle: {
         flex: 1,

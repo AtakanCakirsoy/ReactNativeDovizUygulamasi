@@ -30,20 +30,6 @@ target 'dovizprojesi' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  target 'dovizprojesiTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
   use_native_modules!
 end
 
-target 'dovizprojesi-tvOS' do
-  # Pods for dovizprojesi-tvOS
-
-  target 'dovizprojesi-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end

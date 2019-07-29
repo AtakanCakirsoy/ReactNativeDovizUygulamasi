@@ -62,7 +62,7 @@ const TabNavigator = createBottomTabNavigator({
       //showLabel: false,
       style: {
         backgroundColor: '#00074A',//color you want to change
-        fontFamily: 'sans-serif-medium',
+        //fontFamily: 'sans-serif-medium',
       },
       tabStyle: {
         borderRightWidth: 1,
