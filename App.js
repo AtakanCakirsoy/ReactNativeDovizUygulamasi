@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { View, Image } from 'react-native';
+import { Image } from 'react-native';
 import Altin from './components/Altin';
 import Doviz from './components/Doviz';
 import Kripto from './components/Kripto';
@@ -20,9 +20,6 @@ if (deviceCountry === 'TR') {
 } else {
   StringOfLanguages.setLanguage('en');
 }
-
-
-
 
 const TabNavigator = createBottomTabNavigator({
   Currency: Doviz,
